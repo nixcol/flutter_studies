@@ -4,6 +4,9 @@ abstract class PessoaDart {
   String _nome = "";
   String _endereco = "";
   TipoNotificacao _tipoNotificacao = TipoNotificacao.none;
+  String _email = "";
+  String _celular = "";
+  String _token = "";
 
   void setNome(String nome) {
     _nome = nome;
@@ -21,13 +24,40 @@ abstract class PessoaDart {
     return _endereco;
   }
 
+  void setEmail(String email) {
+    _email = email;
+  }
+
+  String getEmail() {
+    return _email;
+  }
+
+  void setCelular(String celular) {
+    _celular = celular;
+  }
+
+  String getCelular() {
+    return _celular;
+  }
+
+  void setToken(String token) {
+    _token = token;
+  }
+
+
+  String getToken() {
+    return _token;
+  }
+
   void setTipoNotificacao(TipoNotificacao tipoNotificacao) {
     _tipoNotificacao = tipoNotificacao;
   }
 
+  
   TipoNotificacao getTipoNotificacao() {
     return _tipoNotificacao;
   }
+
 
   @override //serve para sobrescrever o método toString.
   String toString() {
