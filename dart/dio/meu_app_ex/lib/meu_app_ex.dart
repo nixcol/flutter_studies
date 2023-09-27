@@ -1,15 +1,26 @@
-import 'dart:convert';
-import 'dart:io';
 
+import 'package:meu_app_ex/exception/nome_invalido_exception.dart';
 import 'package:meu_app_ex/models/utils.dart';
+import 'dart:io';
 
 import 'models/aluno.dart';
 
 void execute() {
   print("Bem vindo ao Sistema de Notas!");
   String nome = ConsoleUtils.lerStringComTexto("Digite o nome do aluno:");
-  var aluno = Aluno(
-      nome); //a variável aluno agora aponta para um objeto do tipo Aluno na memória
+  try {
+    if (nome.trim() == '') {
+      throw NomeInvalidoException(); }
+  } on NomeInvalidoException {
+    nome = "Nome Padrão";
+    print(NomeInvalidoException);
+    exit(0); } catch (e) {
+      print(e);
+      exit(0);
+    }
+  
+
+  var aluno = Aluno(nome); //a variável aluno agora aponta para um objeto do tipo Aluno na memória
   double? nota; //o ? significa que a variável pode ser nula
   //ler double com texto e com saída
   do {
@@ -20,8 +31,13 @@ void execute() {
     }
   } while (nota != null);
   print("As notas digitadas foram: ${aluno.getNotas()}");
-
+  print("A média do aluno é: ${aluno.retornaMedia()}");
+  if (aluno.aprovado(7)) {
+    print("${aluno.getNome()} foi aprovado!");
+  } else {
+    print("${aluno.getNome()} foi reprovado!");
   }
+}
 
   // do {
   //   //o loop do-while começa e executa o bloco de código dentro do do { ... } antes de verificar a condição no while

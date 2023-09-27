@@ -5,9 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "meu_app_ex_main.dart",
+      "name": "Running Main App",
       "request": "launch",
-      "type": "dart"
+      "type": "dart",
+      "program": "bin/meu_app_ex_main.dart"
     }
   ]
 }
