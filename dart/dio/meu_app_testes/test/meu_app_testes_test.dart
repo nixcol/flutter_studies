@@ -1,6 +1,12 @@
+import 'package:meu_app_testes/classes/viacep.dart';
 import 'package:meu_app_testes/meu_app_testes.dart' as app;
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
+import 'meu_app_testes_test.mocks.dart';
+
+@GenerateMocks([MockViaCep])
 void main() {
   test('Dá o valor final do produto com desconto cru', () {
     expect(app.calcularDesconto(1000, 150, false), 850);
@@ -64,8 +70,27 @@ void main() {
   });
 
   test('Retornar CEP', () async {
-    var body = await app.retornarCEP('01001000');
-    print(body);
+    //ViaCEP viaCep = ViaCEP(); não vamos mais precisar disso daqui
+    //vamos usar o mockito para criar um mock da classe ViaCEP
+    MockMockViaCep mockMockViaCep = MockMockViaCep();
+    when(mockMockViaCep.retornarCEP("01001000")) //quando eu chamar essa função, mock esse retorno enquanto eu passo esse parâmetro
+        .thenAnswer((realInvocation) => Future.value({
+         "cep": "01001-000",
+        "logradouro": "Praça da Sé",
+        "complemento": "lado ímpar",
+        "bairro": "Sé",
+        "localidade": "São Paulo",
+        "uf": "SP",
+        "ibge": "3550308",
+        "gia": "1004",
+        "ddd": "11",
+        "siafi": "7107"
+        }));
+    var body = await mockMockViaCep.retornarCEP('01001000');
     expect(body['bairro'], equals('Sé'));
   });
+}
+
+class MockViaCep extends Mock implements ViaCEP {
+  //dps que fazemos isso temos que fazer dart run build_runner build --delete-conflicting-outputs
 }

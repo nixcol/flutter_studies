@@ -9,10 +9,13 @@ environment:
 # Add regular dependencies here.
 dependencies:
   http: ^0.13.5 
+  mockito: ^5.3.0
+  # o mockito serve para mockar os dados. para isso, precisamos criar uma classe intermediária que vai extender a mocki e vai implementar o viacep, nesse caso 
   # path: ^1.8.0
 
 
 dev_dependencies:
+  build_runner: ^2.2.0
   lints: ^2.0.0
   test: ^1.21.0
   
