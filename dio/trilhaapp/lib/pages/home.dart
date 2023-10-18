@@ -40,14 +40,52 @@ class _HomePageState extends State<HomePage> {
             horizontal: 16), //margem de 8 pixels na vertical e 16 na horizontal
         child: Column(
           //bota um componente em baixo do outro
-          mainAxisAlignment: MainAxisAlignment.center, //alinhamento vertical
-          crossAxisAlignment: CrossAxisAlignment.center, //alinhamento horizontal
+          mainAxisAlignment: MainAxisAlignment.start, //alinhamento vertical
+          crossAxisAlignment: CrossAxisAlignment.start, //alinhamento horizontal
           children: [
-            Text('Ações do usuário', style: GoogleFonts.lato(fontSize: 20)),
+            Container(
+              width: 200,
+              height: 200,
+              color: Colors.cyan,
+              child: Text('Ações do usuário', style: GoogleFonts.lato(fontSize: 20))),
             Text('O seu número aleatório é: $numeroGerado',
                 style: GoogleFonts.lato(fontSize: 20)),
-            Text('Número de cliques: $numeroCliques',
-                style: GoogleFonts.lato(fontSize: 20)),
+            SizedBox( //SizedBox serve para fixar o tamanho de um componente
+              width: 100,
+              height: 100,
+              child: Container(
+                color: Colors.grey,
+                child: Text('Número de cliques: $numeroCliques',
+                    style: GoogleFonts.lato(fontSize: 20)),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly, //espaço entre os elementos
+              children: [
+                Expanded(
+                  flex: 2, //faz com que o elemento ocupe 2/3 do espaço
+                  child: Container(
+                    color: Colors.red,
+                    child: Text("Texto 1",
+                        style: GoogleFonts.lato(fontSize: 20)),
+                  ),
+                ),
+                Expanded( //faz com que o elemento ocupe o espaço restante, se houver
+                  child: Container(
+                    color: Colors.blue,
+                    child: Text("Texto 2",
+                        style: GoogleFonts.lato(fontSize: 20)),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    color: Colors.pink,
+                    child: Text("Texto 3",
+                        style: GoogleFonts.lato(fontSize: 20)),
+                  ),
+                )
+              ],
+            )
           ],
         ),
       ),
